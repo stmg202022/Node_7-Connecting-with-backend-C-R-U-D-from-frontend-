@@ -23,13 +23,25 @@ const Products = () => {
 
   console.log(products);
 
+  const handleDelete = async (props_id) => {
+    // console.log(_id);
+    const res = await axios.delete(
+      `http://localhost:8080/api/products/${props_id}`
+    );
+    console.log(res.data);
+
+    if (res.data._id) {
+      setProducts(products.filter((p) => p._id !== res.data._id));
+    }
+  };
+
   return (
     <div>
       <h1>Products</h1>
       <Link to="/">Home</Link>
       <div>
         {products.map((product, index) => (
-          <ProductCard {...product} key={index} />
+          <ProductCard {...product} key={index} handleDelete={handleDelete} />
           // <ProductCard product={product} key={index} />
         ))}
       </div>
