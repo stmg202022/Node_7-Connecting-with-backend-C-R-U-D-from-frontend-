@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -6,21 +6,23 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+
 import { AiOutlineStar } from "react-icons/ai";
 
 const ProductCard = ({ ...props }) => {
   const {
-    id,
+    _id,
     title,
     description,
     price,
     discountPercentage,
     rating,
-    stock,
-    brand,
-    category,
+    // stock,
+    // brand,
+    // category,
     thumbnail,
-    images,
+    // images,
+    handleDelete,
   } = props;
 
   return (
@@ -55,7 +57,7 @@ const ProductCard = ({ ...props }) => {
         </div>
         <CardMedia
           sx={{ height: 140, background: "#ffcdd2" }}
-          image={images[0]}
+          image={thumbnail}
           title="green iguana"
         />
 
@@ -80,9 +82,15 @@ const ProductCard = ({ ...props }) => {
           </Typography>
           <CardActions>
             <Button size="small">
-              Buy{" "}
+              Buy
               <span>
                 <b>+</b>
+              </span>
+            </Button>
+            <Button size="small" onClick={() => handleDelete(_id)}>
+              Delete
+              <span>
+                <b>-</b>
               </span>
             </Button>
           </CardActions>
